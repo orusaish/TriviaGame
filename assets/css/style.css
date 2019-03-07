@@ -1,6 +1,63 @@
+body {
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+}
+.container {
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+#timesUp {
+  margin-left: 50px;
+  font-size: 25px;
+}
 #question_div div {
   margin: 10px;
 }
-#question_div input {
-  color: blue;
+#introScreen h1 {
+  justify-content: center;
+  align-content: center;
+  margin: auto;
+  color: red;
+}
+#introScreen {
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+}
+#answerScreen {
+  margin: 20px;
+  padding: 20px;
+}
+.first {
+  padding: 15px;
+}
+.container header {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+#questions label {
+  padding: 10px;
+  font-weight: 400;
+}
+#questions div {
+  font-weight: 700;
+}
+#questions label input {
+  margin-right: 5px;
+}
+#time-remain {
+  display: inline-block;
+}
+#timeDisplay {
+  padding: 15px;
+}
+.second p {
+  display: inline-block;
+}
+.second {
+  padding: 15px;
 }

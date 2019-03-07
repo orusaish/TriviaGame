@@ -56,19 +56,23 @@ var questions = [
     ans: "In the Temple of Zeus"
   }
 ];
+
+document.getElementById("answerScreen").style.display = "none";
+document.getElementById("timesUp").style.display = "none";
+document.getElementById("questionContainer").style.display = "none";
+
 var startGame = $("#start-btn").on("click", function() {
   $(this)
     .parent()
     .hide();
-  document.getElementById("answerScreen").style.display = "none";
-  document.getElementById("timesUp").style.display = "none";
 
   $(".container").show();
-  countdown(30);
+  countdown(60);
   displayQuestions();
 });
 
 function displayQuestions() {
+  $("#introScreen").hide();
   $("#questions :not('#sub-but')").empty();
   var element = document.getElementById("questions");
   var innerhtml = "";
@@ -77,77 +81,69 @@ function displayQuestions() {
     innerhtml += "<div>" + questions[i].q + "</div>";
     for (var j = 0; j < 4; j++) {
       innerhtml +=
-        "<input type='radio' name='choiceq" +
+        "<label><input type='radio' name='choiceq" +
         i +
         "' value='" +
         questions[i].choices[j] +
         "'>" +
         questions[i].choices[j] +
-        "</input>";
+        "</input></label>";
     }
   }
   element.innerHTML = innerhtml;
 }
-var correct = 0;
-var incorrect = 0;
 function checkAns() {
+  var correct = 0;
+  var incorrect = 8;
   for (var i = 0; i < questions.length; i++) {
     var checked_answer = document.querySelector(
       'input[name="choiceq' + i + '"]:checked'
-    ).value;
+    );
+    if (checked_answer) {
+      checked_value = checked_answer.value;
 
-    if (checked_answer === questions[i].ans) {
-      correct++;
-    } else {
-      incorrect++;
+      if (checked_value === questions[i].ans) {
+        correct++;
+        incorrect--;
+      }
     }
   }
   console.log(correct);
   console.log(incorrect);
-  $("#correctTimesUp").append(correct);
-  // display wrongAnswers
-  $("#wrongTimesUp").append(incorrect);
+  document.getElementById("correctAnswerValue").innerHTML = correct;
+  document.getElementById("wrongAnswerValue").innerHTML = incorrect;
 }
 
+function showAnswers() {
+  $(".container").fadeOut(500);
+
+  checkAns();
+  clearInterval(timer);
+
+  document.getElementById("questionContainer").style.display = "none";
+  document.getElementById("answerScreen").style.display = "block";
+  document.getElementById("timeDisplay").style.display = "none";
+}
+
+var timer;
+
 var countdown = function(seconds) {
-  var timer = setInterval(function() {
+  timer = setInterval(function() {
     seconds = seconds - 1;
     $("#time-remain").html(seconds);
 
     if (seconds <= 0) {
-      $(".container").fadeOut(500);
-      var correct = 0;
-      var incorrect = 0;
-      var unAnswered = 0;
-
-      checkAns();
-
       $("#timesUp")
         .fadeIn(1000)
         .show();
-
       clearInterval(timer);
+
+      showAnswers();
       return;
     }
   }, 1000);
+
   $("#sub-but").on("click", function() {
-    clearInterval(timer);
-    $("#answerScreen").show();
+    showAnswers();
   });
 };
-// function to grade quiz once submit button is clicked
-// var gradeQuiz = $("#sub-but").on("click", function() {
-//   var correct = 0;
-//   var incorrect = 0;
-//   var unAnswered = 0;
-//   checkAns();
-//   countdown();
-// fade out questions
-//   $(".container").fadeOut(500);
-// show answerScreen
-//   $("#answerScreen").show();
-// display correctAnswers
-//   $("#correctScreen").append(correct);
-// display wrongAnswers
-//   $("#wrongScreen").append(incorrect);
-// });

@@ -27,7 +27,7 @@
   <body>
     <div id="introScreen">
       <div class="first">
-        <h1>Welcome on my Trivia Game!</h1>
+        <h1>Welcome to my Trivia Game!</h1>
 
         <hr />
         <p>You have 60 seconds to guess 10 questions.</p>
@@ -42,29 +42,26 @@
         </button>
       </div>
     </div>
-    <!-- <div id="questionPage">
-      <button onclick="displayQuestions()">Play!</button>
-    </div> -->
     <div id="answerScreen">
       <div class="second">
         <h2>Here is your result</h2>
         <hr />
-        <p id="correctScreen">Correct Answers:</p>
-        <p id="wrongScreen">Wrong Answers:</p>
+        <p id="correctTimesUp">Correct Answers:</p>
+        &nbsp;&nbsp;<span id="correctAnswerValue"></span><br />
+        <p id="wrongTimesUp">Wrong Answers:</p>
+        &nbsp;&nbsp;<span id="wrongAnswerValue"></span><br />
       </div>
     </div>
     <div id="timesUp">
-      <div class="wrongBox">
-        <h2 class="up">Times Up!</h2>
-        <hr />
-        <p>Here's youre score:</p>
-        <p id="correctTimesUp">Correct Answers:</p>
-        <p id="wrongTimesUp">Wrong Answers:</p>
-      </div>
+      Your time is up!
     </div>
-    <div class="container">
-      <header>Trivia Game!</header>
-      <div class="row timeRemain">
+    <div class="container" id="questionContainer">
+      <h1>
+        <span style="color:red;font-weight:bold;font-size: 20px"
+          >Trivia Game!</span
+        >
+      </h1>
+      <div class="row timeRemain" id="timeDisplay">
         Time Remaining:
         <div id="time-remain">60</div>
       </div>
@@ -79,12 +76,6 @@
         Submit
       </button>
     </div>
-    <!-- <div id="timer"></div>
-    <div id="question_div"></div>
-    <div id="choices_div"></div>
-    <div class="correct"></div>
-    <div class="incorrect"></div> -->
-
     <script type="text/javascript" src="assets/javascript/app.js"></script>
   </body>
 </html>
